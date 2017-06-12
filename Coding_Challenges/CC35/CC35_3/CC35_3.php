@@ -44,6 +44,13 @@ function calcDistance($points,$order){
   }
   return $sum;
 }
+
+// Main Program
+for($i = 0;$i<$totalCities;$i++){
+  $v = array("x"=>rand(0,$width),"y"=>rand(0,$height));
+  $cities[] = $v;
+  $order[] = $i;
+}
 function nextOrder(){
   $keys = array_keys($order);
   $count++;
@@ -82,18 +89,11 @@ function nextOrder(){
     $s .= $val;
   }
 }
-
-// Main Program
-for($i = 0;$i<$totalCities;$i++){
-  $v = array("x"=>rand(0,$width),"y"=>rand(0,$height));
-  $cities[] = $v;
-  $order[] = $i;
-}
 $d = calcDistance($cities,$order);
 $recordDistance = $d;
 $bestEver = array_slice($order,0);
 $totalPermutations = factorial($totalCities);
-var_dump($totalPermutations);
+#var_dump($totalPermutations);
 for($aoeu = 0;$aoeu<10;$aoeu++){
   $d = calcDistance($cities,$order);
   if($d < $recordDistance){
@@ -101,7 +101,7 @@ for($aoeu = 0;$aoeu<10;$aoeu++){
     $bestEver = array_slice($bestEver,0);
   }
   $percent = 100 * ($count / $totalPermutations);
-  echo (floor($percent*100)/100+0.01)."\% \n";
+  #echo (floor($percent*100)/100+0.01)."\% \n";
   nextOrder();
 }
 ?>
