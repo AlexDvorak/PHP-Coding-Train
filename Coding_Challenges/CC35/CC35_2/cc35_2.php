@@ -8,7 +8,7 @@ function swap($a,$i,$j){
   $arr[$j] = $temp;
   return $arr;
 }
-for($cnt = 0;$cnt<50;$cnt++){
+for(;;){
 
   // STEP 1 of the algorithm
   // https://www.quora.com/How-would-you-explain-an-algorithm-that-generates-permutations-using-lexicographic-ordering
