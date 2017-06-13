@@ -29,12 +29,10 @@ Class jsarray{
     }
     $this->length = $this->cnt+1;
   }
-  // public function __invoke(int $indx){
-  //
-  // }
+  public function __invoke(int $indx){
+    echo (string) $indx;
+    return $this->vals[(string) ($indx-1)];
+  }
 }
 $arr = new jsarray(2,3,4);
-echo implode(" ",$arr->vals)."\n";
-$arr->push(5);
-echo implode(" ",$arr->vals)."\n";
 ?>
