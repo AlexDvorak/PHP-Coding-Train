@@ -46,7 +46,6 @@ Class jsarray{
       }
     }
   }
-}
   function concat(self ...$arrays){
     if($arrays > 0 && $arrays != NULL){
       $finalarr = $this;
