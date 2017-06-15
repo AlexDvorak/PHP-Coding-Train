@@ -73,7 +73,7 @@ function Cell(i, j) {
     } else {
       return undefined;
     }
-
+  }
 
   }
   this.highlight = function() {
