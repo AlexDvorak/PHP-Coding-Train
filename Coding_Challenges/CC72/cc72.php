@@ -1,8 +1,11 @@
 <?php
+include("../../translationutils/jsarray.php");
 $height = 500;
 $width = 500;
 class Point{
   function __construct(){
+    global $height;
+    global $width;
     $this->x = rand(0,$width);
     $this->y = rand(0,$height);
     if($this->x > $this->y){
@@ -29,17 +32,36 @@ class Perceptron{
   }
   function guess($inputs){
     $sum = 0;
+    // var_dump($this->weights);
     foreach(array_combine($this->weights,$inputs) as $weight => $input){
       $sum += $input*$weight;
     }
     return sign($sum);
   }
   function train($inputs,$target){
-    $guess = sign(guess($inputs));
+    $guess = sign($this->guess($inputs));
     $error = $target - $guess;
     foreach(array_combine($this->weights,$inputs) as $weight => $input){
       $weight += $error * $input * $this->lr;
     }
+  }
+}
+
+// Main Code
+$brain = new Perceptron();
+$points = new jsarray();
+for($i = 0;$i<10;$i++){
+  $points->push(new Point());
+}
+$trainingindex = 0;
+for($i = 0;$i<1;$i++){
+  $training = $points($trainingindex,NULL);
+  $inputs = new jsarray($training->x,$training->y);
+  $target = $training->label;
+  $brain->train($inputs->vals,$target);
+  $trainingindex++;
+  if($trainingindex == $points->length) {
+    $trainingindex = 0;
   }
 }
 ?>
