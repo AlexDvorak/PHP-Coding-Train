@@ -2,7 +2,7 @@
 Class jsarray{
   function __construct(...$vals_){
     $this->vals = array();
-    $this->cnt = -1;
+    $this->cnt = 0;
     if($vals_ != NULL){
       if($vals_ > 0 && $vals_ > 1){
         foreach($vals_ as $val){
@@ -24,13 +24,14 @@ Class jsarray{
   }
   function pop(){
     if($this->length > 0){
-      array_pop($this->vals);
+      return array_pop($this->vals);
       $this->cnt--;
     }
     $this->length = $this->cnt+1;
   }
   function __invoke(int $indx,$exchange,...$vals0){
-    if($indx != NULL && $indx > -1){
+    // echo "aoe";
+    if($indx !== NULL && $indx > -1 && $this->length > $indx){
       return $this->vals[(string) ($indx-1)];
     } else if($exchange != NULL && $indx > -1) {
       $this->vals[(string) ($indx-1)] = $exchange;
@@ -61,5 +62,4 @@ Class jsarray{
     $this->vals = array_reverse($this->vals);
   }
 }
-// one $ for every line of this file
 ?>
