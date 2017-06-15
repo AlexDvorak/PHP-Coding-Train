@@ -32,7 +32,6 @@ class Perceptron{
   }
   function guess($inputs){
     $sum = 0;
-    // var_dump($this->weights);
     foreach(array_combine($this->weights,$inputs) as $weight => $input){
       $sum += $input*$weight;
     }
